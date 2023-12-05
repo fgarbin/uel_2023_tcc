@@ -1,0 +1,160 @@
+{
+  "Plan": {
+    "Async Capable": false,
+    "Node Type": "Gather Merge",
+    "Parallel Aware": false,
+    "Plan Rows": 414838,
+    "Plan Width": 64,
+    "Plans": [
+      {
+        "Async Capable": false,
+        "Node Type": "Sort",
+        "Parallel Aware": false,
+        "Parent Relationship": "Outer",
+        "Plan Rows": 207419,
+        "Plan Width": 64,
+        "Plans": [
+          {
+            "Async Capable": false,
+            "Hash Cond": "(titleprincipals.tconst = titlebasics.tconst)",
+            "Inner Unique": false,
+            "Join Type": "Inner",
+            "Node Type": "Hash Join",
+            "Parallel Aware": true,
+            "Parent Relationship": "Outer",
+            "Plan Rows": 207419,
+            "Plan Width": 64,
+            "Plans": [
+              {
+                "Async Capable": false,
+                "Hash Cond": "(titleprincipals.nconst = namebasics.nconst)",
+                "Inner Unique": false,
+                "Join Type": "Inner",
+                "Node Type": "Hash Join",
+                "Parallel Aware": true,
+                "Parent Relationship": "Outer",
+                "Plan Rows": 1127592,
+                "Plan Width": 44,
+                "Plans": [
+                  {
+                    "Alias": "titleprincipals",
+                    "Async Capable": false,
+                    "Node Type": "Seq Scan",
+                    "Parallel Aware": true,
+                    "Parent Relationship": "Outer",
+                    "Plan Rows": 24570490,
+                    "Plan Width": 20,
+                    "Relation Name": "titleprincipals",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 909038.9
+                  },
+                  {
+                    "Async Capable": false,
+                    "Node Type": "Hash",
+                    "Parallel Aware": true,
+                    "Parent Relationship": "Inner",
+                    "Plan Rows": 248422,
+                    "Plan Width": 34,
+                    "Plans": [
+                      {
+                        "Alias": "namebasics",
+                        "Async Capable": false,
+                        "Filter": "((birthyear IS NOT NULL) AND (deathyear IS NULL))",
+                        "Node Type": "Seq Scan",
+                        "Parallel Aware": true,
+                        "Parent Relationship": "Outer",
+                        "Plan Rows": 248422,
+                        "Plan Width": 34,
+                        "Relation Name": "namebasics",
+                        "Startup Cost": 0.0,
+                        "Total Cost": 204549.63
+                      }
+                    ],
+                    "Startup Cost": 204549.63,
+                    "Total Cost": 204549.63
+                  }
+                ],
+                "Startup Cost": 209595.9,
+                "Total Cost": 1505349.45
+              },
+              {
+                "Async Capable": false,
+                "Node Type": "Hash",
+                "Parallel Aware": true,
+                "Parent Relationship": "Inner",
+                "Plan Rows": 789130,
+                "Plan Width": 40,
+                "Plans": [
+                  {
+                    "Async Capable": false,
+                    "Hash Cond": "(titleakas.titleid = titlebasics.tconst)",
+                    "Inner Unique": false,
+                    "Join Type": "Inner",
+                    "Node Type": "Hash Join",
+                    "Parallel Aware": true,
+                    "Parent Relationship": "Outer",
+                    "Plan Rows": 789130,
+                    "Plan Width": 40,
+                    "Plans": [
+                      {
+                        "Alias": "titleakas",
+                        "Async Capable": false,
+                        "Filter": "(isoriginaltitle = '1'::text)",
+                        "Node Type": "Seq Scan",
+                        "Parallel Aware": true,
+                        "Parent Relationship": "Outer",
+                        "Plan Rows": 789130,
+                        "Plan Width": 10,
+                        "Relation Name": "titleakas",
+                        "Startup Cost": 0.0,
+                        "Total Cost": 669202.19
+                      },
+                      {
+                        "Async Capable": false,
+                        "Node Type": "Hash",
+                        "Parallel Aware": true,
+                        "Parent Relationship": "Inner",
+                        "Plan Rows": 4289949,
+                        "Plan Width": 30,
+                        "Plans": [
+                          {
+                            "Alias": "titlebasics",
+                            "Async Capable": false,
+                            "Node Type": "Seq Scan",
+                            "Parallel Aware": true,
+                            "Parent Relationship": "Outer",
+                            "Plan Rows": 4289949,
+                            "Plan Width": 30,
+                            "Relation Name": "titlebasics",
+                            "Startup Cost": 0.0,
+                            "Total Cost": 204979.49
+                          }
+                        ],
+                        "Startup Cost": 204979.49,
+                        "Total Cost": 204979.49
+                      }
+                    ],
+                    "Startup Cost": 287929.85,
+                    "Total Cost": 1003372.55
+                  }
+                ],
+                "Startup Cost": 1003372.55,
+                "Total Cost": 1003372.55
+              }
+            ],
+            "Startup Cost": 1228998.58,
+            "Total Cost": 2555832.85
+          }
+        ],
+        "Sort Key": [
+          "namebasics.nconst"
+        ],
+        "Startup Cost": 2581951.72,
+        "Total Cost": 2582470.26
+      }
+    ],
+    "Startup Cost": 2582951.74,
+    "Total Cost": 2631352.89,
+    "Workers Planned": 2
+  }
+}

@@ -1,0 +1,95 @@
+"QUERY PLAN QRY02"
+"[
+  {
+    "Plan": {
+      "Node Type": "Hash Join",
+      "Parallel Aware": false,
+      "Async Capable": false,
+      "Join Type": "Semi",
+      "Startup Cost": 104936.24,
+      "Total Cost": 397004.09,
+      "Plan Rows": 216,
+      "Plan Width": 93,
+      "Inner Unique": false,
+      "Hash Cond": "(titlebasics.tconst = \"ANY_subquery\".tconst)",
+      "Plans": [
+        {
+          "Node Type": "Seq Scan",
+          "Parent Relationship": "Outer",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Relation Name": "titlebasics",
+          "Alias": "titlebasics",
+          "Startup Cost": 0.00,
+          "Total Cost": 265038.77,
+          "Plan Rows": 10295877,
+          "Plan Width": 93
+        },
+        {
+          "Node Type": "Hash",
+          "Parent Relationship": "Inner",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 104933.54,
+          "Total Cost": 104933.54,
+          "Plan Rows": 216,
+          "Plan Width": 10,
+          "Plans": [
+            {
+              "Node Type": "Subquery Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Alias": "ANY_subquery",
+              "Startup Cost": 104906.18,
+              "Total Cost": 104933.54,
+              "Plan Rows": 216,
+              "Plan Width": 10,
+              "Plans": [
+                {
+                  "Node Type": "Gather Merge",
+                  "Parent Relationship": "Subquery",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Startup Cost": 104906.18,
+                  "Total Cost": 104931.38,
+                  "Plan Rows": 216,
+                  "Plan Width": 15,
+                  "Workers Planned": 2,
+                  "Plans": [
+                    {
+                      "Node Type": "Sort",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Startup Cost": 103906.15,
+                      "Total Cost": 103906.42,
+                      "Plan Rows": 108,
+                      "Plan Width": 15,
+                      "Sort Key": ["titleepisode.seasonnumber", "titleepisode.episodenumber"],
+                      "Plans": [
+                        {
+                          "Node Type": "Seq Scan",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": true,
+                          "Async Capable": false,
+                          "Relation Name": "titleepisode",
+                          "Alias": "titleepisode",
+                          "Startup Cost": 0.00,
+                          "Total Cost": 103902.51,
+                          "Plan Rows": 108,
+                          "Plan Width": 15,
+                          "Filter": "(parenttconst = 'tt0108778'::text)"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]"

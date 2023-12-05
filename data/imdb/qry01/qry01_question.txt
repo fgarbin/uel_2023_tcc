@@ -1,0 +1,85 @@
+Como melhorar a query:  select titlebasics.tconst, titleprincipals.tconst, titleprincipals.nconst, namebasics.primaryname from titlebasics inner join titleprincipals on titlebasics.tconst = titleprincipals.tconst inner join namebasics on titleprincipals.nconst = namebasics.nconst where titlebasics.tconst = 'tt0075148'
+
+Com o schema:
+
+CREATE TABLE public.namebasics (
+    index bigint,
+    nconst text,
+    primaryname text,
+    birthyear text,
+    deathyear text,
+    primaryprofession text,
+    knownfortitles text
+);
+ALTER TABLE public.namebasics OWNER TO postgres;
+CREATE TABLE public.titleakas (
+    index bigint,
+    titleid text,
+    ordering bigint,
+    title text,
+    region text,
+    language text,
+    types text,
+    attributes text,
+    isoriginaltitle text
+);
+ALTER TABLE public.titleakas OWNER TO postgres;
+CREATE TABLE public.titlebasics (
+    index bigint,
+    tconst text,
+    titletype text,
+    primarytitle text,
+    originaltitle text,
+    isadult text,
+    startyear text,
+    endyear text,
+    "runtimeMinutes" text,
+    genres text
+);
+ALTER TABLE public.titlebasics OWNER TO postgres;
+CREATE TABLE public.titlecrew (
+    index bigint,
+    tconst text,
+    directors text,
+    writers text
+);
+ALTER TABLE public.titlecrew OWNER TO postgres;
+CREATE TABLE public.titleepisode (
+    index bigint,
+    tconst text,
+    parenttconst text,
+    seasonnumber text,
+    episodenumber text
+);
+ALTER TABLE public.titleepisode OWNER TO postgres;
+CREATE TABLE public.titleprincipals (
+    index bigint,
+    tconst text,
+    ordering bigint,
+    nconst text,
+    category text,
+    job text,
+    characters text
+);
+ALTER TABLE public.titleprincipals OWNER TO postgres;
+CREATE TABLE public.titleratings (
+    index bigint,
+    tconst text,
+    averagerating double precision,
+    numvotes bigint
+);
+ALTER TABLE public.titleratings OWNER TO postgres;
+CREATE INDEX ix_namebasics_index ON public.namebasics USING btree (index);
+CREATE INDEX ix_titleakas_index ON public.titleakas USING btree (index);
+CREATE INDEX ix_titlebasics_index ON public.titlebasics USING btree (index);
+CREATE INDEX ix_titlecrew_index ON public.titlecrew USING btree (index);
+CREATE INDEX ix_titleepisode_index ON public.titleepisode USING btree (index);
+CREATE INDEX ix_titleprincipals_index ON public.titleprincipals USING btree (index);
+CREATE INDEX ix_titleratings_index ON public.titleratings USING btree (index);
+CREATE INDEX namebasics_pk ON public.namebasics USING btree (nconst COLLATE "C" bpchar_pattern_ops);
+CREATE INDEX titleakas_pk ON public.titleakas USING btree (titleid COLLATE "C" bpchar_pattern_ops, ordering);
+CREATE INDEX titlebasics_pk ON public.titlebasics USING btree (tconst COLLATE "C" bpchar_pattern_ops);
+CREATE INDEX titlecrew_pk ON public.titlecrew USING btree (tconst COLLATE "C" bpchar_pattern_ops);
+CREATE INDEX titleepisode_pk ON public.titleepisode USING btree (tconst COLLATE "C" bpchar_pattern_ops);
+CREATE INDEX titleprincipals_pk ON public.titleprincipals USING btree (tconst COLLATE "C" bpchar_pattern_ops, ordering);
+CREATE INDEX titleratings_pk ON public.titleratings USING btree (tconst COLLATE "C" bpchar_pattern_ops);

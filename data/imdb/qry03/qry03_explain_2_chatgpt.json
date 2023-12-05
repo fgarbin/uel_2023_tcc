@@ -1,0 +1,177 @@
+"QUERY PLAN QRY03 - CHATGPT"
+"[
+  {
+    "Plan": {
+      "Node Type": "Gather Merge",
+      "Parallel Aware": false,
+      "Async Capable": false,
+      "Startup Cost": 2467922.42,
+      "Total Cost": 2516323.57,
+      "Plan Rows": 414838,
+      "Plan Width": 64,
+      "Workers Planned": 2,
+      "Plans": [
+        {
+          "Node Type": "Sort",
+          "Parent Relationship": "Outer",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 2466922.40,
+          "Total Cost": 2467440.95,
+          "Plan Rows": 207419,
+          "Plan Width": 64,
+          "Sort Key": ["nb.nconst"],
+          "Plans": [
+            {
+              "Node Type": "Hash Join",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": true,
+              "Async Capable": false,
+              "Join Type": "Inner",
+              "Startup Cost": 1113969.27,
+              "Total Cost": 2440803.53,
+              "Plan Rows": 207419,
+              "Plan Width": 64,
+              "Inner Unique": false,
+              "Hash Cond": "(tp.tconst = tb.tconst)",
+              "Plans": [
+                {
+                  "Node Type": "Hash Join",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": true,
+                  "Async Capable": false,
+                  "Join Type": "Inner",
+                  "Startup Cost": 206629.60,
+                  "Total Cost": 1502383.14,
+                  "Plan Rows": 1127592,
+                  "Plan Width": 44,
+                  "Inner Unique": false,
+                  "Hash Cond": "(tp.nconst = nb.nconst)",
+                  "Plans": [
+                    {
+                      "Node Type": "Seq Scan",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": true,
+                      "Async Capable": false,
+                      "Relation Name": "titleprincipals",
+                      "Alias": "tp",
+                      "Startup Cost": 0.00,
+                      "Total Cost": 909038.90,
+                      "Plan Rows": 24570490,
+                      "Plan Width": 20
+                    },
+                    {
+                      "Node Type": "Hash",
+                      "Parent Relationship": "Inner",
+                      "Parallel Aware": true,
+                      "Async Capable": false,
+                      "Startup Cost": 201583.32,
+                      "Total Cost": 201583.32,
+                      "Plan Rows": 248422,
+                      "Plan Width": 34,
+                      "Plans": [
+                        {
+                          "Node Type": "Bitmap Heap Scan",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": true,
+                          "Async Capable": false,
+                          "Relation Name": "namebasics",
+                          "Alias": "nb",
+                          "Startup Cost": 8284.89,
+                          "Total Cost": 201583.32,
+                          "Plan Rows": 248422,
+                          "Plan Width": 34,
+                          "Recheck Cond": "((birthyear IS NOT NULL) AND (deathyear IS NULL))",
+                          "Plans": [
+                            {
+                              "Node Type": "Bitmap Index Scan",
+                              "Parent Relationship": "Outer",
+                              "Parallel Aware": false,
+                              "Async Capable": false,
+                              "Index Name": "idx_namebasics_birthdeath",
+                              "Startup Cost": 0.00,
+                              "Total Cost": 8135.84,
+                              "Plan Rows": 596212,
+                              "Plan Width": 0,
+                              "Index Cond": "((birthyear IS NOT NULL) AND (deathyear IS NULL))"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Node Type": "Hash",
+                  "Parent Relationship": "Inner",
+                  "Parallel Aware": true,
+                  "Async Capable": false,
+                  "Startup Cost": 891309.54,
+                  "Total Cost": 891309.54,
+                  "Plan Rows": 789130,
+                  "Plan Width": 40,
+                  "Plans": [
+                    {
+                      "Node Type": "Hash Join",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": true,
+                      "Async Capable": false,
+                      "Join Type": "Inner",
+                      "Startup Cost": 287930.41,
+                      "Total Cost": 891309.54,
+                      "Plan Rows": 789130,
+                      "Plan Width": 40,
+                      "Inner Unique": false,
+                      "Hash Cond": "(ta.titleid = tb.tconst)",
+                      "Plans": [
+                        {
+                          "Node Type": "Index Only Scan",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": true,
+                          "Async Capable": false,
+                          "Scan Direction": "Forward",
+                          "Index Name": "idx_titleakas_titleid",
+                          "Relation Name": "titleakas",
+                          "Alias": "ta",
+                          "Startup Cost": 0.56,
+                          "Total Cost": 557139.18,
+                          "Plan Rows": 789130,
+                          "Plan Width": 10,
+                          "Index Cond": "(isoriginaltitle = '1'::text)"
+                        },
+                        {
+                          "Node Type": "Hash",
+                          "Parent Relationship": "Inner",
+                          "Parallel Aware": true,
+                          "Async Capable": false,
+                          "Startup Cost": 204979.49,
+                          "Total Cost": 204979.49,
+                          "Plan Rows": 4289949,
+                          "Plan Width": 30,
+                          "Plans": [
+                            {
+                              "Node Type": "Seq Scan",
+                              "Parent Relationship": "Outer",
+                              "Parallel Aware": true,
+                              "Async Capable": false,
+                              "Relation Name": "titlebasics",
+                              "Alias": "tb",
+                              "Startup Cost": 0.00,
+                              "Total Cost": 204979.49,
+                              "Plan Rows": 4289949,
+                              "Plan Width": 30
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]"

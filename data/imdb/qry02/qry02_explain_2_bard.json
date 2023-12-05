@@ -1,0 +1,61 @@
+"QUERY PLAN"
+"[
+  {
+    ""Plan"": {
+      ""Node Type"": ""Nested Loop"",
+      ""Parallel Aware"": false,
+      ""Async Capable"": false,
+      ""Join Type"": ""Inner"",
+      ""Startup Cost"": 980.22,
+      ""Total Cost"": 3166.34,
+      ""Plan Rows"": 258,
+      ""Plan Width"": 98,
+      ""Inner Unique"": false,
+      ""Plans"": [
+        {
+          ""Node Type"": ""Sort"",
+          ""Parent Relationship"": ""Outer"",
+          ""Parallel Aware"": false,
+          ""Async Capable"": false,
+          ""Startup Cost"": 979.79,
+          ""Total Cost"": 980.43,
+          ""Plan Rows"": 258,
+          ""Plan Width"": 15,
+          ""Sort Key"": [""titleepisode.seasonnumber"", ""titleepisode.episodenumber""],
+          ""Plans"": [
+            {
+              ""Node Type"": ""Index Scan"",
+              ""Parent Relationship"": ""Outer"",
+              ""Parallel Aware"": false,
+              ""Async Capable"": false,
+              ""Scan Direction"": ""Forward"",
+              ""Index Name"": ""ix_titleepisode_parenttconst"",
+              ""Relation Name"": ""titleepisode"",
+              ""Alias"": ""titleepisode"",
+              ""Startup Cost"": 0.43,
+              ""Total Cost"": 969.45,
+              ""Plan Rows"": 258,
+              ""Plan Width"": 15,
+              ""Index Cond"": ""(parenttconst = 'tt0108778'::text)""
+            }
+          ]
+        },
+        {
+          ""Node Type"": ""Index Scan"",
+          ""Parent Relationship"": ""Inner"",
+          ""Parallel Aware"": false,
+          ""Async Capable"": false,
+          ""Scan Direction"": ""Forward"",
+          ""Index Name"": ""ix_titlebasics_tconst"",
+          ""Relation Name"": ""titlebasics"",
+          ""Alias"": ""titlebasics"",
+          ""Startup Cost"": 0.43,
+          ""Total Cost"": 8.45,
+          ""Plan Rows"": 1,
+          ""Plan Width"": 93,
+          ""Index Cond"": ""(tconst = titleepisode.tconst)""
+        }
+      ]
+    }
+  }
+]"
